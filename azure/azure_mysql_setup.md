@@ -13,6 +13,8 @@ az group create --name rg-dashboard-etl --location eastus
 
 
 ---
+```
+
 
 🗃️ 2. Criar Servidor MySQL no Azure
 
