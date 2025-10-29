@@ -1,0 +1,36 @@
+📘 Descrição (para criar o arquivo no Excel antes de subir para o GitHub):
+
+Tabela	Campo	Tipo de Dado	Descrição	Chave
+
+DEPARTMENT	Dnumber	INT	Código do departamento	PK
+DEPARTMENT	Dname	VARCHAR(50)	Nome do departamento	-
+DEPARTMENT	Mgr_ssn	CHAR(9)	SSN do gerente responsável	FK → EMPLOYEE.Ssn
+DEPARTMENT	Mgr_start_date	DATE	Data de início do gerente	-
+EMPLOYEE	Fname	VARCHAR(15)	Primeiro nome do funcionário	-
+EMPLOYEE	Minit	CHAR(1)	Inicial do meio do nome	-
+EMPLOYEE	Lname	VARCHAR(15)	Sobrenome do funcionário	-
+EMPLOYEE	Ssn	CHAR(9)	Número de identificação	PK
+EMPLOYEE	Bdate	DATE	Data de nascimento	-
+EMPLOYEE	Address	VARCHAR(100)	Endereço completo	-
+EMPLOYEE	Sex	CHAR(1)	Sexo (M/F)	-
+EMPLOYEE	Salary	DECIMAL(10,2)	Salário mensal	-
+EMPLOYEE	Super_ssn	CHAR(9)	SSN do supervisor direto	FK → EMPLOYEE.Ssn
+EMPLOYEE	Dno	INT	Departamento em que trabalha	FK → DEPARTMENT.Dnumber
+PROJECT	Pnumber	INT	Código do projeto	PK
+PROJECT	Pname	VARCHAR(50)	Nome do projeto	-
+PROJECT	Plocation	VARCHAR(50)	Localização do projeto	-
+PROJECT	Dnum	INT	Departamento responsável	FK → DEPARTMENT.Dnumber
+WORKS_ON	Essn	CHAR(9)	SSN do funcionário	PK/FK → EMPLOYEE.Ssn
+WORKS_ON	Pno	INT	Código do projeto	PK/FK → PROJECT.Pnumber
+WORKS_ON	Hours	DECIMAL(5,2)	Horas trabalhadas no projeto	-
+DEPENDENT	Essn	CHAR(9)	SSN do funcionário	FK → EMPLOYEE.Ssn
+DEPENDENT	Dependent_name	VARCHAR(20)	Nome do dependente	-
+DEPENDENT	Sex	CHAR(1)	Sexo do dependente	-
+DEPENDENT	Bdate	DATE	Data de nascimento do dependente	-
+DEPENDENT	Relationship	VARCHAR(15)	Grau de parentesco com o funcionário	-
+
+
+📎 Salvar como: data/dicionario_dados.xlsx
+
+
+--- 
