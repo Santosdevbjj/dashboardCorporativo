@@ -3,6 +3,7 @@
 ## 🎯 Objetivo
 Criar e configurar um servidor MySQL na Azure para hospedar o banco de dados **`bd_company`**, que será integrado ao Power BI.
 
+
 ---
 
 ## ☁️ 1. Criar Grupo de Recursos
@@ -11,8 +12,10 @@ Criar e configurar um servidor MySQL na Azure para hospedar o banco de dados **`
 az group create --name rg-dashboard-etl --location eastus
 
 
----
 ```
+
+---
+
 
 🗃️ 2. Criar Servidor MySQL no Azure
 
