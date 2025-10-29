@@ -53,7 +53,10 @@ O objetivo é demonstrar a criação de um **dashboard corporativo** com métric
 
 ## 📁 Estrutura do Repositório
 
-dashboardCorporativo/ │ ├── data/ │   ├── bd_company_schema.sql │   ├── bd_company_inserts.sql │   ├── consultas_exemplos.sql │   └── dicionario_dados.xlsx │ ├── azure/ │   ├── azure_mysql_setup.md │   ├── firewall_rule_setup.md │   ├── cloud_shell_commands.sh │   └── connection_workbench.md │ ├── powerbi/ │   ├── transformacoes_etl.pbix │   ├── relatorio_dashboard.png │   ├── power_query_steps.md │   └── integracao_mysql_azure.md │ ├── docs/ │   ├── 01_desafio_projeto.md │   ├── 02_etapas_execucao.md │   ├── 03_transformacoes_realizadas.md │   └── 04_modelagem_dados.png │ ├── img/ │   ├── diagrama_arquitetura.png │   ├── conexao_azure_mysql.png │   ├── powerbi_integracao.png │   └── dashboard_final.png │ └── README.md
+
+<img width="964" height="1072" alt="Screenshot_20251029-191601" src="https://github.com/user-attachments/assets/3443c698-aabc-4e01-98db-9f78308f007e" />
+
+
 
 ---
 
@@ -87,7 +90,7 @@ az mysql flexible-server create \
 ```
 
 
-🔐 Configuração de Firewall e Conexão via Workbench
+🔐 **Configuração de Firewall e Conexão via Workbench**
 
 Criar regra de firewall para acesso externo:
 
@@ -98,7 +101,7 @@ az mysql flexible-server firewall-rule create \
   --start-ip-address 0.0.0.0 \
   --end-ip-address 255.255.255.255
 
-Conexão via Workbench
+**Conexão via Workbench**
 
 Host: mysql-corporativo.mysql.database.azure.com
 
@@ -112,13 +115,13 @@ Banco: azure_company
 
 ---
 
-🧱 Execução dos Scripts SQL
+🧱 **Execução dos Scripts SQL**
 
 1. No MySQL Workbench, execute:
 
 
 
-Criação do Schema e Tabelas
+**Criação do Schema e Tabelas**
 
 CREATE SCHEMA IF NOT EXISTS azure_company;
 USE azure_company;
@@ -139,11 +142,11 @@ CREATE TABLE employee(
      ON DELETE SET NULL ON UPDATE CASCADE
 );
 
-Criação das Demais Tabelas
+**Criação das Demais Tabelas**
 
 (veja arquivo completo em /data/bd_company_schema.sql)
 
-Inserção dos Dados
+**Inserção dos Dados**
 
 INSERT INTO employee VALUES 
 ('John', 'B', 'Smith', '123456789', '1965-01-09', '731-Fondren-Houston-TX', 'M', 30000, '333445555', 5),
@@ -153,7 +156,7 @@ INSERT INTO employee VALUES
 
 ---
 
-🔗 Integração do Power BI com MySQL Azure
+🔗 **Integração do Power BI com MySQL Azure**
 
 1. Abra o Power BI Desktop
 
@@ -161,7 +164,7 @@ INSERT INTO employee VALUES
 2. Vá em Obter Dados → MySQL Database
 
 
-3. Insira:
+3. **Insira:**
 
 Servidor: mysql-corporativo.mysql.database.azure.com
 
@@ -171,7 +174,7 @@ Modo de Conexão: Importar
 
 
 
-4. Autenticação → Usuário e Senha
+4. **Autenticação → Usuário e Senha**
 
 
 5. Selecione as tabelas: employee, departament, project, works_on, dependent
@@ -181,7 +184,7 @@ Modo de Conexão: Importar
 
 ---
 
-🔄 Transformações de Dados (ETL)
+🔄 **Transformações de Dados (ETL)**
 
 1️⃣ Verificação de Cabeçalhos e Tipos
 
@@ -190,14 +193,14 @@ Confirme os tipos de dados (decimal, date, text) no Power Query.
 Corrija valores monetários para tipo Decimal Number.
 
 
-2️⃣ Tratamento de Valores Nulos
+2️⃣ **Tratamento de Valores Nulos**
 
 Super_ssn nulo → indica gerente.
 
 Substitua nulos por "Sem Gerente" ou mantenha como null se gerentes forem identificados.
 
 
-3️⃣ Junção Employee + Departament
+3️⃣ **Junção Employee + Departament**
 
 Merge Queries → base: employee
 
@@ -207,7 +210,7 @@ Resultado: coluna Department_Name adicionada a employee.
 
 
 
-4️⃣ Junção Colaboradores ↔ Gerentes
+4️⃣ **Junção Colaboradores ↔ Gerentes**
 
 Crie uma auto-mescla da tabela employee com ela mesma:
 
@@ -217,24 +220,24 @@ Nova coluna: Manager_Name
 
 
 
-5️⃣ Mesclagem de Colunas
+5️⃣ **Mesclagem de Colunas**
 
 Crie FullName = [Fname] & " " & [Lname]
 
 Crie DeptLocation = [Dname] & " - " & [Dlocation]
 
 
-6️⃣ Agrupamento
+6️⃣ **Agrupamento**
 
 Agrupe por Manager_Name → Contagem de funcionários subordinados.
 
 
-7️⃣ Eliminação de Colunas Desnecessárias
+7️⃣ **Eliminação de Colunas Desnecessárias**
 
 Remova colunas técnicas como Ssn, Super_ssn, Dnumber, etc., mantendo apenas as de análise.
 
 
-8️⃣ Carregamento no Power BI
+8️⃣ **Carregamento no Power BI**
 
 Clique em Fechar e Aplicar → para carregar os dados transformados no modelo.
 
@@ -242,7 +245,7 @@ Clique em Fechar e Aplicar → para carregar os dados transformados no modelo.
 
 ---
 
-🌟 Modelo de Dados e Dashboard Final
+🌟 **Modelo de Dados e Dashboard Final**
 
 Modelo Relacional:
 
@@ -269,7 +272,7 @@ Localização dos departamentos
 
 ---
 
-💻 Comandos Azure CLI e Cloud Shell
+💻 **Comandos Azure CLI e Cloud Shell**
 
 # Conectar ao servidor MySQL
 az mysql flexible-server connect --name mysql-corporativo --user admin_corp --admin-password "Senha@123"
@@ -283,7 +286,7 @@ az mysql flexible-server show --name mysql-corporativo --resource-group rg-dash-
 
 ---
 
-🧰 Tecnologias Utilizadas
+🧰 **Tecnologias Utilizadas**
 
 Categoria	Ferramenta
 
@@ -298,13 +301,11 @@ Versionamento	Git + GitHub
 
 ---
 
-👨‍💻 Autor
+👨‍💻 **Autor**
 
 Sérgio Santos
-💼 Analista de Sistemas e Profissional de TI
-🎯 Especialista em Integração de Dados, Power BI e Azure
-🌐 LinkedIn
-📧 santosdevbjj@gmail.com
+
+
 
 
 ---
